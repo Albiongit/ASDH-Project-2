@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+enum PjesaProvimit {
+	PjesaShkrim,
+	PjesaTeorike
+};
+class Rezultati {
+private:
+	int piketshkrim, piketteori;
+public:
+	Rezultati(int piketshkrim, int piketteori) {
+		this->piketshkrim = piketshkrim;
+		this->piketteori = piketteori;
+
+	}
+	void shtypPiket() {
+		cout << "Ju keni " << piketshkrim << " pike me shkrim dhe " << piketteori << " pike me teori."<<endl;
+	}
+	double mesatarja() {
+		return (piketshkrim + piketteori) / 2;
+	}
+	bool Kakaluar() {
+		if (this->mesatarja() >= 50) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	PjesaProvimit pjesaMaksimale() {
+		if (piketshkrim > piketteori) {
+			return PjesaShkrim;
+		}
+		else {
+			return PjesaTeorike;
+		}
+	}
+	void Maximumi() {
+
+		switch (this->pjesaMaksimale())
+		{
+		case PjesaShkrim:cout << "Ju keni pike maksimale ne pjesen me shkrim." << endl;
+			break;
+		case PjesaTeorike:cout << "Ju keni pike maksimale ne pjesen teorike." << endl;
+		}
+	}
+};
+
+
+int main() {
+	Rezultati QarqeDigjitale(59,69);
+	cout << "Ne lenden Qarqe Digjitale" << endl;
+	QarqeDigjitale.shtypPiket();
+	cout << "Mesatarja e pikeve totale : " << QarqeDigjitale.mesatarja()<<endl;
+	if (QarqeDigjitale.Kakaluar() == true) {
+		cout << "Ju keni kaluar lenden!"<<endl;
+	}
+	else {
+		cout << "Ju nuk keni kaluar lenden." << endl;
+	}
+	QarqeDigjitale.Maximumi();
+	return 0;
+}
