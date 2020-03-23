@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Drejtkendshi {
+private:
+	double gjersia, lartsia;
+public:
+	Drejtkendshi(double gjersia, double lartsia) {
+		this->gjersia = gjersia;
+		this->lartsia = lartsia;
+	}
+	double getGjersia() {
+		return this->gjersia;
+	}
+	double getLartsia() {
+		return this->lartsia;
+	}
+	double setGjersia(double gjersia) {
+		this->gjersia = gjersia;
+		return this->gjersia;
+	}
+	double setLartsia(double lartsia) {
+		this->lartsia = lartsia;
+		return this->lartsia;
+	}
+	double siperfaqja() {
+		return gjersia * lartsia;
+	}
+	double perimetri() {
+		return 2 * (gjersia + lartsia);
+	}
+};
+
+
+int main() {
+	double a, b, c, d;
+	Drejtkendshi A(4, 5);
+	Drejtkendshi* B = new Drejtkendshi(5, 6);
+	cout << "Drejtkendshi i pare ka gjeresi : " << A.getGjersia() << "m , dhe lartesi :" << A.getLartsia() << "m ." << endl;
+	cout << "Jep vleren e gjeresise sipas deshires per Drejtkendshin e pare :";
+	cin >> a;
+	cout << "Kurse lartsia : ";
+	cin >> b;
+	A.setGjersia(a); A.setLartsia(b);
+	cout << "Drejtkendeshi i pare tani ka gjeresi : " << A.getGjersia() << "m , dhe lartesi : " << A.getLartsia() << "m ." << endl;
+	cout << "Perimetri i tij eshte : " << A.perimetri() << "m ." << endl;
+	cout << "Siperfaqja : " << A.siperfaqja() << "m2 ." << endl << endl;
+
+	cout << "Drejtkendshi i pare ka gjeresi : " << B->getGjersia() << "m , dhe lartesi :" << B->getLartsia() << "m ." << endl;
+	cout << "Jep vleren e gjeresise sipas deshires per Drejtkendshin e pare :";
+	cin >> c;
+	cout << "Kurse lartsia : ";
+	cin >> d;
+	B->setGjersia(c); B->setLartsia(d);
+	cout << "Drejtkendeshi i pare tani ka gjeresi : " << B->getGjersia() << "m , dhe lartesi : " << B->getLartsia() << "m ." << endl;
+	cout << "Perimetri i tij eshte : " << B->perimetri() << "m ." << endl;
+	cout << "Siperfaqja : " << B->siperfaqja() << "m2 ." << endl << endl;
+
+
+	delete B;
+	return 0;
+}
