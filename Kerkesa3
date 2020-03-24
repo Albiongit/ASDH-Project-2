@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string>
+#include <chrono>
+#include <ctime>
+#include <sstream>
+using namespace std;
+typedef std::chrono::system_clock Clock;
+#pragma warning(disable : 4996); //injorohet nje warning qe nuk ka lejonte perdorimin e funksionit te kohes per arsye sigurie.
+class Data {
+private :
+	int d, m, v;
+public:
+	Data(int d, int m, int v) {
+		this->d = d;
+		this->m = m;
+		this->v = v;
+
+	}
+
+	Data() {
+		
+		auto now = Clock::now();
+		std::time_t now_c = Clock::to_time_t(now);
+		struct tm* parts = std::localtime(&now_c);
+
+		v = 1900 + parts->tm_year;
+		m = 1 + parts->tm_mon;
+		d = parts->tm_mday;
+	//	cout << d << "/" << m << "/" << v << endl; mundesi per shfaqje direkte.
+	}
+	void dita() {
+		cout << "Dita " << d<<endl;
+	}
+	void muaji() {
+		cout << "Muaji " << m << endl;
+	}
+	void viti() {
+		cout << "Viti " << v << endl;
+	}
+	void tremujori() {
+		if (m <= 3) {
+			cout << "Data eshte ne tremujorin e pare." << endl;
+		}
+		else if(m <= 6) {
+			cout << "Data eshte ne tremujorin e dyte." << endl;
+		}
+		else if (m <= 9) {
+			cout << "Data eshte ne tremujorin e trete." << endl;
+		}
+		else {
+			cout << "Data eshte ne tremujorin e katert." << endl;
+		}
+	}
+	void shekulli() {
+		int sh;
+		sh = (int)v / 100;
+		cout << "Data eshte ne shekullin " << sh + 1 << "." << endl;
+	}
+	string toString() {
+		stringstream ss;
+		ss << d << "/" << m << "/" << v << endl;
+		return ss.str();
+	}
+	};
+
+int main() {
+	Data Pavarsise(17,02,2008);
+	cout << Pavarsise.toString();
+	Pavarsise.dita();
+	Pavarsise.muaji();
+	Pavarsise.viti();
+	Pavarsise.tremujori();
+	Pavarsise.shekulli();
+	
+
+	Data sot;
+	cout << sot.toString();
+	sot.dita();
+	sot.muaji();
+	sot.viti();
+	sot.shekulli();
+	sot.tremujori();
+
+	return 0;
+}
